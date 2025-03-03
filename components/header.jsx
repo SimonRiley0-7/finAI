@@ -4,14 +4,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { LayoutDashboard, PenBox } from 'lucide-react';
+import { checkUser } from '@/lib/checkUser';
 
-const Header = () => {
+const Header = async () => {
+    await checkUser();
   return (
     <div className='fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b'>
         <nav className='container mx-auto py-4 px-4 flex items-center justify-between'>
         <Link href="/">
           {/* Text logo with stylized appearance */}
-          <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 text-transparent bg-clip-text">
+          <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
             finAI
           </span>
         </Link>
