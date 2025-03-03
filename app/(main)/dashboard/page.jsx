@@ -1,12 +1,13 @@
-// DashboardPage.js
-"use client"; // Fix the typo and move to top
 
 import React from 'react'
 import CreateAccountDrawer from '@/components/create-account-drawer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Plus } from 'lucide-react';
+import { getUserAccounts } from '@/actions/dashboard';
+import AccountCard from './_components/account-card';
 
-function DashboardPage(){
+async function DashboardPage(){
+    const accounts = await getUserAccounts();
   return (
     <div className='px-5'>
         <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
@@ -18,6 +19,9 @@ function DashboardPage(){
                     </CardContent>
                 </Card>
             </CreateAccountDrawer>
+            {accounts.length > 0 && accounts?.map((account) => (
+            <AccountCard key={account.id} account={account} />
+          ))}
         </div>
     </div>
   )
